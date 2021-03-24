@@ -7,5 +7,5 @@ When("I click on link {string}") do |link_name|
 end
 
 Then("the page should contain {string}") do |content|
-  page.has_content? content
+  expect(page).to have_content(content.upcase)
 end
