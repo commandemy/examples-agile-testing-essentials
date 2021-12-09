@@ -1,6 +1,11 @@
-require File.join(File.dirname(__FILE__), '..', '..', 'app.rb')
+require 'httparty'
+require 'database_cleaner/active_record'
+require './app'
 
-require 'capybara/cucumber'
+SERVER_URL = "http://localhost:#{ENV['SERVER_PORT']}"
 
-Capybara.app = Blog
+DatabaseCleaner.strategy = :truncation
 
+AfterAll do
+  DatabaseCleaner.clean
+end
